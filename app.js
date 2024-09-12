@@ -10,9 +10,13 @@ renderHome()
 function renderHome() {
   app.innerHTML = '' // Clear the app content
 
+  // Create main container
+  const mainContainer = document.createElement('div')
+  mainContainer.classList.add('main-container')
+
   // Create form container
   const formContainer = document.createElement('div')
-  formContainer.classList.add('container')
+  formContainer.classList.add('form-container')
 
   // Form title
   const formTitle = document.createElement('h2')
@@ -44,11 +48,12 @@ function renderHome() {
   // Append inputs and button to form
   form.append(fullName, rank, position, platoon, status, taskTime, submitBtn)
   formContainer.appendChild(form)
-  app.appendChild(formContainer)
+
+  mainContainer.appendChild(formContainer)
 
   // Create table container
   const tableContainer = document.createElement('div')
-  tableContainer.classList.add('container')
+  tableContainer.classList.add('table-container')
 
   // Table title
   const tableTitle = document.createElement('h2')
@@ -111,9 +116,10 @@ function renderHome() {
               table.appendChild(row)
             })
   tableContainer.appendChild(table)
-  app.appendChild(tableContainer)
-}
-// Function to handle form submit
+
+  mainContainer.appendChild(tableContainer)
+  app.appendChild(mainContainer)
+}// Function to handle form submit
 function handleFormSubmit(index = null) {
   console.log('Before adding:', soldiers)
 
@@ -195,7 +201,7 @@ function renderEditPage(index) {
   app.innerHTML = '' // Clear the app content
 
   const editContainer = document.createElement('div')
-  editContainer.classList.add('container')
+  editContainer.classList.add('container', 'edit-container')  // Add 'edit-container' class
 
   const editTitle = document.createElement('h2')
   editTitle.innerText = 'Edit Soldier'
@@ -227,7 +233,6 @@ function renderEditPage(index) {
   editContainer.append(fullName, rank, position, platoon, status, taskTime, saveBtn, cancelBtn)
   app.appendChild(editContainer)
 }
-
 function updateMissionButton(button, endTime) {
   const updateTimer = () => {
     const timeLeft = Math.max(0, endTime - Date.now());
